@@ -1,22 +1,16 @@
-const express = require('express');
-const app = express();
-const ejs = require('ejs');
-const path = require('path');
+const express = require('express')
+const app = express()
+const path = require('path')
 
-const PORT = 8080;
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use((req, res, next) => {
-    res.locals.dirname = __dirname;
-    next();
-});
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index2');
 });
 
-const server = app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
-});
+app.listen(8080, () => {
+    console.log('Server is listening on port 8080.')
+})
