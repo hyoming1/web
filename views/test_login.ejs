@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>데이터베이스 연결 테스트</title>
+  </head>
+  <body>
+    <% if (dbConnected) { %>
+    <p>데이터베이스 연결 성공</p>
+    <h1>로그인 페이지</h1>
+    <form action="/test_login/login" method="POST">
+      <div>
+        <label for="username">사용자 이름:</label>
+        <input type="text" id="username" name="username">
+      </div>
+      <div>
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password">
+      </div>
+      <div>
+        <input type="submit" value="로그인">
+      </div>
+    </form>
+    <% } else { %>
+    <p>데이터베이스 연결 실패</p>
+    <% } %>
+  </body>
+</html>

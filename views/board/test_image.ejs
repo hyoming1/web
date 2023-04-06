@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <title>Test</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    img {
+      max-width: 25%;
+      height: auto;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    var images = JSON.parse('<%- JSON.stringify(images) %>');
+    var currentIndex = 0;
+  
+    function loadImage() {
+      var img = document.createElement('img');
+      img.onload = function() {
+        document.getElementById('image-container').appendChild(img);
+        img.onload = null;
+       
+        // scroll down after loading an image
+        window.scrollBy(0, document.body.scrollHeight);
+      };
+      img.src = images[currentIndex];
+      currentIndex++;
+      if (currentIndex >= images.length) {
+        $(document).off('click touchstart');
+      }
+    }
+  
+    $(document).ready(function() {
+      var isTouchDevice = 'ontouchstart' in document.documentElement;
+      var eventTrigger = isTouchDevice ? 'touchstart' : 'click';
+  
+      $(document).on(eventTrigger, function() {
+        loadImage();
+      });
+    });
+  </script>
+  
+</head>
+<body>
+  <p>This is a <span style="color:green; font-weight:bold;"><%= nameTest %></span> board</p>
+  <div id="image-container"></div>
+</body>
+</html>
