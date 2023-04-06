@@ -9,7 +9,6 @@
   "version": "1.0.0",
   "description": "포트폴리오용 웹페이지",
   "main": "web.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
