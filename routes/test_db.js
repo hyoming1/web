@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const { Pool } = require('pg');
 
-// postgresql 연결 정보 설정
+
 const pool = new Pool({
-    user: 'test',
-    host: '192.168.0.4',
-    database: 'test',
-    password: 'test',
-    port: 5432,
-});
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+  });
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
@@ -20,12 +20,14 @@ router.get('/', async (req, res) => {
         const client = await pool.connect();
         res.render('test_login', { dbConnected: true });
         client.release();
-    } catch (err) {
+      } catch (err) {
         console.error(err);
-        res.render('test_login', { dbConnected: false });
+        if (!res.headersSent) {
+            res.render('test_login', { dbConnected: false });
+        }
     }
 });
-
+/*
 // 로그인 처리
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -54,6 +56,8 @@ router.post('/login', async (req, res) => {
       console.error(err);
       res.send('<h1>로그인 실패: 서버 오류</h1>');
     }
-  });
+  });*/
 
 module.exports = router;
+
+console.log("/routes/test_db.js");

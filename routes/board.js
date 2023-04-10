@@ -20,3 +20,5 @@ router.get('/test_image', (req, res) => {
   });
 
 module.exports = router;
+
+console.log("/routes/board.js");
