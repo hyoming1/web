@@ -7,8 +7,6 @@ const path = require('path')
 const boardRouter = require('./routes/board');
 const testLoginRouter = require('./routes/test_db');
 
-
-
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 

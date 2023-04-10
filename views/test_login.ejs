@@ -21,6 +21,20 @@
         <input type="submit" value="로그인">
       </div>
     </form>
+
+    <form action="/test_login/add" method="POST">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div>
+        <input type="submit" value="Add User">
+      </div>
+    </form>
     <% } else { %>
     <p>데이터베이스 연결 실패</p>
     <% } %>
