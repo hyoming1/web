@@ -5,7 +5,7 @@ const app = express()
 const path = require('path')
 
 const boardRouter = require('./routes/board');
-const testLoginRouter = require('./routes/test_db');
+const LoginRouter = require('./routes/login');
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // board 라우터 등록하기
 app.use('/board', boardRouter);
-app.use('/test_login', testLoginRouter);
+app.use('/login', LoginRouter);
 
 app.get('/', (req, res) => {
     res.render('index');
